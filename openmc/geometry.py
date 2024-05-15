@@ -62,7 +62,7 @@ class Geometry:
         if self._root_universe is None:
             return False
         else: 
-            return cell in self.root_universe()
+            return cell in self.root_universe
             
     @property
     def root_universe(self) -> openmc.UniverseBase:
