@@ -23,8 +23,8 @@ def test_contains_cell():
     assert not (c4 in geom1)
 
     
-    univ = openmc.Universe(name='coldplay', cells=[c1, c2, c3])
-    geom2 = openmc.Geometry(univ)
+    test_univ = openmc.Universe(name='test_univ', cells=[c1, c2, c3])
+    geom2 = openmc.Geometry(test_univ)
 
     assert (c1 in geom2) 
     assert (c2 in geom2)

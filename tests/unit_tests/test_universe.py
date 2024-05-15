@@ -39,7 +39,7 @@ def test_contains_cell():
     c3 = openmc.Cell()
     c4 = openmc.Cell()
 
-    u = openmc.Universe(name='coldplay', cells=(c1, c2, c3))
+    u = openmc.Universe(name='test_uni', cells=(c1, c2, c3))
 
     assert(c1 in u)
     assert(c2 in u)
