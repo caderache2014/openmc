@@ -49,6 +49,12 @@ class UniverseBase(ABC, IDManagerMixin):
         string += '{: <16}=\t{}\n'.format('\tName', self._name)
         return string
 
+    def __contains__(self, cell):
+        if self.cells is None:
+            return False
+        else:
+            return cell.id in self.cells.keys()
+
     @property
     def name(self):
         return self._name
