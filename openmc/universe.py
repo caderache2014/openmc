@@ -53,7 +53,7 @@ class UniverseBase(ABC, IDManagerMixin):
         if self.cells is None:
             return False
         else:
-            return cell.id in self.cells.keys()
+            return cell.id in self.cells
 
     @property
     def name(self):
