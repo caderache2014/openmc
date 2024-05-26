@@ -50,10 +50,27 @@ class UniverseBase(ABC, IDManagerMixin):
         return string
 
     def __contains__(self, cell):
-        if self.cells is None:
+
+        
+        if cell is None:
             return False
-        else:
-            return cell.id in self.cells
+
+        local_cells = self.get_all_cells().values()
+
+        if local_cells is None:
+            return False
+
+        
+        
+        if cell in local_cells:
+            return True
+        
+
+        for univ in self.get_all_universes().values():
+            if cell in univ:
+                return True
+
+        return False
 
     @property
     def name(self):

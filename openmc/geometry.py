@@ -59,10 +59,23 @@ class Geometry:
                 self._root_universe = univ
 
     def __contains__(self, cell):
-        if self._root_universe is None:
+
+        if cell is None:
             return False
-        else: 
-            return cell in self.root_universe
+
+        if self.root_universe is None:
+            return False
+
+        if cell in self.root_universe:
+            return True  
+
+        if cell in set(self.get_all_cells().values()):
+            return True 
+
+        if cell in set(self.get_all_universes().values()):
+            return True  
+
+        return False
             
     @property
     def root_universe(self) -> openmc.UniverseBase:
