@@ -23,8 +23,8 @@ def test_contains_cell():
     assert not (c4 in geom1)
 
     
-    test_univ = openmc.Universe(name='test_univ', cells=[c1, c2, c3])
-    geom2 = openmc.Geometry(test_univ)
+    univ1 = openmc.Universe(name='univ1', cells=[c1, c2, c3])
+    geom2 = openmc.Geometry(univ1)
 
     assert (c1 in geom2) 
     assert (c2 in geom2)
@@ -34,9 +34,9 @@ def test_contains_cell():
 
     c5 = openmc.Cell()
     c6 = openmc.Cell()
-    univ2 = openmc.Universe(name='cool', cells=[c5, c6])
+    univ2 = openmc.Universe(name='univ2', cells=[c5, c6])
     c7 = openmc.Cell(fill=univ2)
-    c8 = openmc.Cell(fill=univ)
+    c8 = openmc.Cell(fill=univ1)
     univ_comp = openmc.Universe(name='composed universe',cells=[c7, c8])
     geom_comp = openmc.Geometry(univ_comp)
 
