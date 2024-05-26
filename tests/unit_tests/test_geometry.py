@@ -31,6 +31,23 @@ def test_contains_cell():
     assert (c3 in geom2)
     assert not (c4 in geom2)
 
+
+    c5 = openmc.Cell()
+    c6 = openmc.Cell()
+    univ2 = openmc.Universe(name='cool', cells=[c5, c6])
+    c7 = openmc.Cell(fill=univ2)
+    c8 = openmc.Cell(fill=univ)
+    univ_comp = openmc.Universe(name='composed universe',cells=[c7, c8])
+    geom_comp = openmc.Geometry(univ_comp)
+
+    assert c5 in geom_comp
+    assert c6 in geom_comp
+    assert c7 in geom_comp
+    assert c8 in geom_comp
+    assert c1 in geom_comp
+
+
+
     
 def test_volume(run_in_tmpdir, uo2):
     """Test adding volume information from a volume calculation."""
