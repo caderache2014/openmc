@@ -46,6 +46,7 @@ def test_contains_cell():
     assert(c2 in u0)
     assert(c2 in u0)
     assert not (c4 in u0)
+    assert not ('hi' in u0)
 
 
     c5 = openmc.Cell()
@@ -64,6 +65,8 @@ def test_contains_cell():
     assert c8 in u_composed
     assert c9 in u_composed
     assert not c4 in u_composed 
+
+    assert not 'hi' in u_composed
 
 def test_bounding_box():
     cyl1 = openmc.ZCylinder(r=1.0)

@@ -51,26 +51,22 @@ class UniverseBase(ABC, IDManagerMixin):
 
     def __contains__(self, cell):
 
-        
-        if cell is None:
+        try:
+            check_type('cell', cell, openmc.Cell)
+        except:
             return False
 
-        local_cells = self.get_all_cells().values()
-
-        if local_cells is None:
-            return False
-
-        
-        
-        if cell in local_cells:
+        #return in constant time if the cell is a leaf
+        if cell.id in self.cells:
             return True
-        
 
-        for univ in self.get_all_universes().values():
-            if cell in univ:
-                return True
-
+        #otherwise do a depth-first search
+        for child_cell in self.cells.values():
+            if isinstance(child_cell.fill, openmc.Universe):
+                if cell in child_cell.fill:
+                    return True
         return False
+
 
     @property
     def name(self):

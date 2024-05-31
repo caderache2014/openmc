@@ -12,7 +12,7 @@ import numpy as np
 
 import openmc
 import openmc._xml as xml
-from .checkvalue import check_type, check_less_than, check_greater_than, PathLike
+from .checkvalue import check_type, check_less_than, check_greater_than, PathLike, check_value
 
 
 class Geometry:
@@ -60,22 +60,13 @@ class Geometry:
 
     def __contains__(self, cell):
 
-        if cell is None:
+        try:
+            check_type('cell', cell, openmc.Cell)
+        except:
             return False
 
-        if self.root_universe is None:
-            return False
+        return cell in self.root_universe
 
-        if cell in self.root_universe:
-            return True  
-
-        if cell in set(self.get_all_cells().values()):
-            return True 
-
-        if cell in set(self.get_all_universes().values()):
-            return True  
-
-        return False
             
     @property
     def root_universe(self) -> openmc.UniverseBase:
