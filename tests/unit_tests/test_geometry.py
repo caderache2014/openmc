@@ -15,7 +15,7 @@ def test_contains_cell():
     c4 = openmc.Cell()
 
     
-    geom1= openmc.Geometry([c1, c2, c3])
+    geom1 = openmc.Geometry([c1, c2, c3])
 
     assert (c1 in geom1)
     assert (c2 in geom1)
@@ -45,6 +45,8 @@ def test_contains_cell():
     assert c7 in geom_comp
     assert c8 in geom_comp
     assert c1 in geom_comp
+
+    assert 'hi' not in geom_comp
 
 
 
