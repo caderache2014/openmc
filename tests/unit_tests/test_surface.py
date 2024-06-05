@@ -775,16 +775,19 @@ def test_boundingbox_consistency():
     settings = openmc.Settings(particles=100, batches=100)
     model = openmc.model.Model(geometry=geometry, settings=settings)
     model.export_to_model_xml()
-
+    #pytest 1 == 0
     openmc.lib.init()
     #print(cell.bounding_box)
     py_lowerleft, py_upperright = cell.bounding_box
     assert tuple(py_lowerleft) == (-17.7, -1.3, -17.7)
     assert tuple(py_upperright) == (17.7, 5.6, 17.7)
     #print(openmc.lib.cells[1].bounding_box)
-
-    cpp_lowerleft, cpp_upperright = openmc.lib.cells[1].bounding_box
-    assert tuple(cpp_lowerleft) == (-17.7, -1.3, -17.7)
+    
+    cpp_lowerleft, cpp_upperright = openmc.lib.cells[cell.id].bounding_box
+    assert tuple(cpp_lowerleft) == (-17.7, np.inf, -17.7)
     assert tuple(cpp_upperright) == (17.7, 5.6, 17.7)
+    assert 1 == 0
 
     openmc.lib.finalize()
+
+    assert 1 == 0
