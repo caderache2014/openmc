@@ -46,8 +46,8 @@ def test_contains_cell():
     assert(c2 in u0)
     assert(c2 in u0)
     assert not (c4 in u0)
-    assert not ('hi' in u0)
-
+    with pytest.raises(TypeError):
+        'hi' in u0
 
     c5 = openmc.Cell()
     u5 = openmc.Universe(cells=[c5])
@@ -66,7 +66,8 @@ def test_contains_cell():
     assert c9 in u_composed
     assert not c4 in u_composed 
 
-    assert not 'hi' in u_composed
+    with pytest.raises(TypeError):
+         'hi' in u_composed
 
 def test_bounding_box():
     cyl1 = openmc.ZCylinder(r=1.0)
