@@ -46,7 +46,9 @@ def test_contains_cell():
     assert c8 in geom_comp
     assert c1 in geom_comp
 
-    assert 'hi' not in geom_comp
+    with pytest.raises(TypeError):
+        'hi' not in geom_comp
+
 
 
 

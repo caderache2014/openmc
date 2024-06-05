@@ -50,11 +50,8 @@ class UniverseBase(ABC, IDManagerMixin):
         return string
 
     def __contains__(self, cell):
-
-        try:
-            check_type('cell', cell, openmc.Cell)
-        except:
-            return False
+        
+        check_type('cell', cell, openmc.Cell)
 
         #return in constant time if the cell is a leaf
         if cell.id in self.cells:

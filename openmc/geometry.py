@@ -60,11 +60,8 @@ class Geometry:
 
     def __contains__(self, cell):
 
-        try:
-            check_type('cell', cell, openmc.Cell)
-        except:
-            return False
-
+        check_type('cell', cell, openmc.Cell)
+    
         return cell in self.root_universe
 
             
