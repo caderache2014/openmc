@@ -1021,10 +1021,11 @@ def test_boundingbox_consistency():
     assert tuple(py_upperright) == (17.7, 5.6, 17.7)
     #print(openmc.lib.cells[1].bounding_box)
 
-    cpp_lowerleft, cpp_upperright = openmc.lib.cells[1].bounding_box
-    assert tuple(cpp_lowerleft) == (-17.7, -inf, -17.7)
+    cpp_lowerleft, cpp_upperright = openmc.lib.cells[cell.cell.id].bounding_box
+    assert tuple(cpp_lowerleft) == (-17.7, -np.inf, -17.7)
     assert tuple(cpp_upperright) == (17.7, 5.6, 17.7)
 
-    assert 1 == 0
+    assert (1 == 0)
+    assert False
 
     openmc.lib.finalize()
