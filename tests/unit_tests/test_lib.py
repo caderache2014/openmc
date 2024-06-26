@@ -993,3 +993,9 @@ def test_sample_external_source(run_in_tmpdir, mpi_intracomm):
         assert p1.wgt == p2.wgt
 
     openmc.lib.finalize()
+
+    #Make sure sampling works in volume calculation mode
+    openmc.lib.init(["-c"])
+    openmc.lib.sample_external_source(100)
+
+    openmc.lib.finalize()
