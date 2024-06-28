@@ -61,7 +61,6 @@ class Geometry:
     def __contains__(self, cell):
 
         check_type('cell', cell, openmc.Cell)
-    
         return cell in self.root_universe
 
             
