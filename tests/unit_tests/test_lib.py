@@ -963,7 +963,8 @@ def test_sample_external_source(run_in_tmpdir, mpi_intracomm):
     model.settings.source = openmc.IndependentSource(
         space=openmc.stats.Box([-5., -5., -5.], [5., 5., 5.]),
         angle=openmc.stats.Monodirectional((0., 0., 1.)),
-        energy=openmc.stats.Discrete([1.0e5], [1.0])
+        energy=openmc.stats.Discrete([1.0e5], [1.0]),
+        constraints={'fissionable': True}
     )
     model.settings.particles = 1000
     model.settings.batches = 10
@@ -994,8 +995,8 @@ def test_sample_external_source(run_in_tmpdir, mpi_intracomm):
 
     openmc.lib.finalize()
 
-    #Make sure sampling works in volume calculation mode
+    # Make sure sampling works in volume calculation mode
     openmc.lib.init(["-c"])
     openmc.lib.sample_external_source(100)
-
     openmc.lib.finalize()
+    
